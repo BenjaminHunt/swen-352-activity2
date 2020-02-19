@@ -1,6 +1,6 @@
-from library.patron import Patron
-from library.library_db_interface import Library_DB
-from library.ext_api_interface import Books_API
+from Activity2_source.library.patron import Patron
+from Activity2_source.library.library_db_interface import Library_DB
+from Activity2_source.library.ext_api_interface import Books_API
 
 class Library:
 
