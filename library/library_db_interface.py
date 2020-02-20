@@ -1,6 +1,6 @@
-from Activity2_source.library.patron import Patron
+from library import Patron
 from tinydb import TinyDB, Query
-import os
+
 
 class Library_DB:
 

@@ -1,6 +1,5 @@
 import unittest
-from Activity2_source.library.patron import Patron, InvalidNameException
-from unittest.mock import Mock
+from library.patron import Patron, InvalidNameException
 
 
 class MyTestCase(unittest.TestCase):
