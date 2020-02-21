@@ -14,7 +14,7 @@ class MyTestCase(unittest.TestCase):
         lib_db = Library_DB()
         with patch('library.patron.Patron') as mock_patron:
             mock_db = MagicMock()
-            mock_db.search.return_value = [{'fname':"q",'lname':"b",'age':12,'memberID':7}]
+            mock_db.search.return_value = [{'fname': "q", 'lname': "b", 'age': 12, 'memberID': 7}]
             lib_db.db = mock_db
             self.assertEqual(lib_db.insert_patron(mock_patron), None)
 
