@@ -5,6 +5,7 @@ from unittest.mock import patch, MagicMock
 
 
 class MyTestCase(unittest.TestCase):
+
     def test_insert_new_patron_none(self):
         lib_db = Library_DB()
         self.assertEqual(lib_db.insert_patron(None), None)
@@ -43,6 +44,31 @@ class MyTestCase(unittest.TestCase):
         with patch('tinydb.TinyDB') as mock_db:
             mock_db.close = True
             self.assertIsNone(lib_db.close_db())
+
+    def test_get_all_patrons(self):
+        lib_db = Library_DB()
+        mock_db = MagicMock()
+        mock_db.all.return_value = []
+        lib_db.db = mock_db
+        assert lib_db.get_all_patrons() == []
+
+    def test_update_patron_none(self):
+        lib_db = Library_DB()
+        assert lib_db.update_patron(None) == None
+
+    def test_update_patron_some(self):
+        lib_db = Library_DB()
+        mock_patron = MagicMock()
+        mock_patron.get_fname.return_value = "f"
+        mock_patron.get_lname.return_value = ";"
+        mock_patron.get_age.return_value = 21
+        mock_patron.get_memberID.return_value = 5
+        mock_patron.get_borrowed_books.return_value = []
+
+        mock_db = MagicMock()
+        mock_db.update.return_value = {}
+        lib_db.db = mock_db
+        lib_db.update_patron(mock_patron)
 
 
 if __name__ == '__main__':
