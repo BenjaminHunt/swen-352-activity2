@@ -122,7 +122,28 @@ class MyTestCase(unittest.TestCase):
         mock_patron.get_memberID = Mock(return_value=1)
         self.assertTrue(lib.is_patron_registered(mock_patron))
 
+    def test_borrow_book(self):
+        lib = self.get_library()
+        lib.db = Mock()
+        mock_patron = Mock()
+        mock_patron.add_borrowed_book = Mock(return_value=None)
+        lib.db.update_patron = Mock(return_value=None)
+        self.assertIsNone(lib.borrow_book("title", mock_patron))
 
+    def test_return_borrowed_book(self):
+        lib = self.get_library()
+        lib.db = Mock()
+        mock_patron = Mock()
+        mock_patron.return_borrowed_book = Mock(return_value=None)
+        lib.db.update_patron = Mock(return_value=None)
+        self.assertIsNone(lib.return_borrowed_book("title", mock_patron))
+
+    def test_is_book_borrowed(self):
+        lib = self.get_library()
+        lib.db = Mock()
+        mock_patron = Mock()
+        mock_patron.get_borrowed_books = Mock(return_value=["title", "title2"])
+        self.assertTrue(lib.is_book_borrowed("title", mock_patron))
 
 if __name__ == '__main__':
     unittest.main()
