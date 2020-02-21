@@ -50,11 +50,11 @@ class MyTestCase(unittest.TestCase):
         mock_db = MagicMock()
         mock_db.all.return_value = []
         lib_db.db = mock_db
-        assert lib_db.get_all_patrons() == []
+        self.assertEquals(lib_db.get_all_patrons(), [])
 
     def test_update_patron_none(self):
         lib_db = Library_DB()
-        assert lib_db.update_patron(None) == None
+        self.assertIsNone(lib_db.update_patron(None))
 
     def test_update_patron_some(self):
         lib_db = Library_DB()
@@ -68,7 +68,7 @@ class MyTestCase(unittest.TestCase):
         mock_db = MagicMock()
         mock_db.update.return_value = {}
         lib_db.db = mock_db
-        lib_db.update_patron(mock_patron)
+        self.assertIsNone(lib_db.update_patron(mock_patron))
 
 
 if __name__ == '__main__':
