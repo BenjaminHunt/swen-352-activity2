@@ -154,7 +154,7 @@ class MyTestCase(unittest.TestCase):
                 "docs": [
                     {'title_suggest': "Das Kapital",
                      'title': "Das Kapital",
-                    'ebook_count_i':10}
+                    'ebook_count_i':1}
                 ]}
         book = self.get_api()
         with patch.object(requests, 'get') as get_mock:
@@ -162,7 +162,7 @@ class MyTestCase(unittest.TestCase):
             get_mock.return_value.json.return_value = data
             assert book.get_ebooks("Das Kapital") == [
                 {'title': "Das Kapital",
-                 'ebook_count': 10,
+                 'ebook_count': 1,
                 }
             ]
     def test_get_ebook_found_book_but_0_ebooks(self):
