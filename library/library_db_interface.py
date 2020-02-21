@@ -1,4 +1,4 @@
-from library import Patron
+from library.patron import Patron
 from tinydb import TinyDB, Query
 
 
